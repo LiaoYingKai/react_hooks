@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useReducer } from 'react';
+import { useDispatch } from 'react-redux';
+import { addTodo } from '../actions/todo-actions';
 
-const propTypes = {};
 
 function Input({onSubmit}) {
 	const [value, setValue] = useState('')
 
+	const dispatch = useDispatch()
+
 	return (
 		<div>
 			<input value={value} onChange={event => {setValue(event.target.value)}}></input>
-			<button onClick={() => {onSubmit(value)}}>輸入</button>
+			<button onClick={() =>{dispatch(addTodo(value))}}>輸入</button>
 		</div>
 	);
 }
-
-Input.propTypes = propTypes;
 
 export default Input;

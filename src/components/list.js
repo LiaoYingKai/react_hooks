@@ -1,23 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, useReducer } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteTodo } from '../actions/todo-actions';
 
-const propTypes = {};
 
-function List({list}) {
+function List() {
+	const dispatch = useDispatch()
+	const todos = useSelector(state => state.todo);
+
 	const [todo_length, setTodoLength] = useState(0)
 
 	useEffect(()=>{
-		setTodoLength(list.length)
+		setTodoLength(todos.length)
 	})
-
 	return (
 		<div>
 			<p> 共 {todo_length} 筆</p>
 			<ul>
 				{
-					list.map((item, index) => {
+					todos.map((item, index) => {
 						return (
-							<li key={`${item}__${index}`}>
+							<li key={`${item}__${index}`} onClick={() => dispatch(deleteTodo(index))}>
 								{item}
 							</li>
 						)
@@ -25,10 +27,7 @@ function List({list}) {
 				}
 			</ul>
 		</div>
-
 	);
 }
-
-List.propTypes = propTypes;
 
 export default List;

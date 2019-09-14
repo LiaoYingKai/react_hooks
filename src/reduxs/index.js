@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import todo from './reducer/todo';
 
-const musicPlayer = combineReducers({
+const reudx = combineReducers({
 	todo
 });
 
-export default musicPlayer;
+export default reudx;
