@@ -1,16 +1,19 @@
-import React, { Component, } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, } from 'react';
+import Input from '../components/input';
+import List from '../components/list';
 
-const propTypes = {};
+function Home() {
+	const [list, setList] = useState([])
 
-function Main() {
+	function _handleInputList(value) {
+		setList([...list, value])
+	}
 	return (
 		<div>
-			Hello World
+			<Input onSubmit={_handleInputList}></Input>
+			<List list={list}></List>
 		</div>
 	);
 }
 
-Main.propTypes = propTypes;
-
-export default Main;
+export default Home;
